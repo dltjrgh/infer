@@ -170,6 +170,13 @@ $(b,infer) $(b,help) $(b,--write-website) $(i,website_root)|}
     ~see_also:[]
 
 
+let symfuzz =
+  mk_command_doc ~title:"Symbolic Fuzzer" ~short_description:"Symbolic Fuzzing."
+    ~synopsis:{|$(b,infer) $(b,symfuzz) $(i,[options])|}
+    ~description:[`P "Symbolic Fuzzer description"]
+    ~see_also:[]
+
+
 let infer =
   mk_command_doc ~title:"Infer Static Analyzer"
     ~short_description:"static analysis for Java and C/C++/Objective-C/Objective-C++"
@@ -353,6 +360,7 @@ let command_to_data =
   ; mk Debug debug
   ; mk Explore explore
   ; mk Help help
+  ; mk SymFuzz symfuzz
   ; mk Report report
   ; mk ReportDiff reportdiff
   ; mk Run run ]

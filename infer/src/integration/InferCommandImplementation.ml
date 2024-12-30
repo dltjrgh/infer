@@ -144,6 +144,8 @@ let help () =
        To see help about the \"help\" command itself, run `infer help --help`.@\n"
 
 
+let symfuzz () = L.result "This is your symbolic fuzzer"
+
 module ReportSet = struct
   module type JsonReport = sig
     include Stdlib.Hashtbl.HashedType

@@ -327,9 +327,9 @@ let analyze_and_report ~changed_files mode =
       (* Called from another integration to do capture only. *) ()
   | (Capture | Compile | Debug | Explore | Help | Report | ReportDiff), _ ->
       ()
-  | (Analyze | Run), _ when Config.invalidate_only ->
+  | (Analyze | Run | SymFuzz), _ when Config.invalidate_only ->
       ()
-  | (Analyze | Run), Hackc _ when Config.hack_verify_capture_only ->
+  | (Analyze | Run | SymFuzz), Hackc _ when Config.hack_verify_capture_only ->
       ()
   | (Analyze | Run), _ ->
       if SourceFiles.is_empty () then error_nothing_to_analyze mode
@@ -338,6 +338,11 @@ let analyze_and_report ~changed_files mode =
         if Config.starvation_whole_program then StarvationGlobalAnalysis.whole_program_analysis () ;
         if Config.shrink_analysis_db then DBWriter.shrink_analysis_db () ) ;
       if Config.report then report ()
+  | SymFuzz, _ ->
+      if SourceFiles.is_empty () then error_nothing_to_analyze mode
+      else (
+        SymbolicFuzzer.checker () ;
+        if Config.report then report () )
 
 
 let analyze_and_report ~changed_files mode =

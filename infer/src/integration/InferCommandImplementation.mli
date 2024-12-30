@@ -15,6 +15,8 @@ val explore : unit -> unit
 
 val help : unit -> unit
 
+val symfuzz : unit -> unit
+
 val report : unit -> unit
 
 val report_diff : unit -> unit

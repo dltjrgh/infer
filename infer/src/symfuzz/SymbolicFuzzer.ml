@@ -6,9 +6,9 @@ module Env = Map.Make (String)
 
 type env = value Env.t
 
-and value = VInt of int | VVar of string
+and value = Vint of int | Vstr of string | Vfloat of float | Vfun of Procname.t
 
-let rec eval (_env : env) (e : Exp.t) : value = match e with Var _ident -> VInt 0 | _ -> VInt 0
+let rec eval (_env : env) (e : Exp.t) : value = match e with Var _ident -> Vint 0 | _ -> Vint 0
 
 (* let rec exec_instr (astate: state) (inst: instr) : state = _ *)
 

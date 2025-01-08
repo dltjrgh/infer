@@ -30,6 +30,7 @@
  (libraries
   base64
   core
+  z3
   ocamlgraph
   IStdlib
   ATDGenerated

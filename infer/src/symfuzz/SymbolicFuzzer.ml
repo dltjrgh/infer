@@ -20,9 +20,12 @@ let checker () =
     List.map procnames ~f:(fun procname ->
         match Procdesc.load procname with
         | Some pdesc ->
-            Procdesc.pp_with_instrs (F.get_std_formatter ()) pdesc
+          let nodes = Procdesc.get_nodes pdesc in
+          let _ = List.fold_left nodes () (fun (_, node) -> Procdesc.Node.pp_with_instrs (F.get_std_formatter ()) node) in
+          ()
+          (* Procdesc.pp_with_instrs (F.get_std_formatter ()) pdesc *)
         | None ->
-            () )
+          () )
   in
   let _ = print_endline "Finish Logging Nodes.." in
   ()
